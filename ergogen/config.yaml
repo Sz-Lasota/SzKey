@@ -1,0 +1,44 @@
+meta:
+  engine: 4.1.0
+  version: 0.1
+  author: Szymon Lasota
+
+points:
+  zones:
+    matrix:
+      columns:
+        outer:
+          rows:
+            top:
+              skip: true
+        pinky:
+          key:
+            stagger: -6
+        ring:
+          key:
+            splay: -6
+            stagger: 8
+            spread: 1.1cx
+        middle:
+          key:
+            stagger: -6
+            splay: -6
+            spread: 1.1cx
+        index:
+          key:
+            stagger: -6
+        inner:
+          key:
+            stagger: -3
+      rows:
+        bottom:
+        middle:
+        top:
+    thumbs:
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-14, -21]
+      columns:
+        near:
+        home:
+        far:
