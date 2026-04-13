@@ -3,42 +3,186 @@ meta:
   version: 0.1
   author: Szymon Lasota
 
+units:
+  pinky_stagger: -6
+  
+  ring_stagger: 8
+  ring_splay: -6
+  ring_spread: 1.1u
+
+  middle_stagger: 6
+  middle_splay: -6
+  middle_spread: 1.1u
+
+  index_stagger: -6
+
+  inner_stagger: -3
+
+  thumb_splay: -14
+  thumb_stagger: -4
+  thumb_spread: 1.2u
+
+  mirror_distance: 40
+
+
 points:
   zones:
     matrix:
+      anchor:
+        rotate: -(ring_splay + middle_splay)
+        shift: [50, -100] # Fix KiCad placement
       columns:
         outer:
           rows:
+            bottom:
+              col_net: P8
+              row_net: P0
+            middle:
+              col_net: P9
+              row_net: P0
             top:
               skip: true
         pinky:
           key:
-            stagger: -6
+            stagger: pinky_stagger
+            col_net: P1
         ring:
           key:
-            splay: -6
-            stagger: 8
-            spread: 1.1cx
+            splay: ring_splay
+            stagger: ring_stagger
+            spread: ring_spread
+            col_net: P2
         middle:
           key:
-            stagger: -6
-            splay: -6
-            spread: 1.1cx
+            splay: middle_splay
+            stagger: middle_stagger
+            spread: middle_spread
+            col_net: P3
         index:
           key:
-            stagger: -6
+            stagger: index_stagger
+            col_net: P4
         inner:
           key:
-            stagger: -3
+            stagger: inner_stagger
+            col_net: P5
       rows:
         bottom:
+          row_net: P8
         middle:
+          row_net: P9
         top:
+          row_net: P10
     thumbs:
       anchor:
-        ref: matrix_inner_bottom
-        shift: [-14, -21]
+        ref: matrix_index_bottom
+        shift: [-6, -24]
       columns:
         near:
+          key:
+            col_net: P3
         home:
+          key:
+            col_net: P4
+            splay: thumb_splay
+            stagger: thumb_stagger
+            spread: thumb_spread
         far:
+          key:
+            col_net: P5
+            splay: thumb_splay
+            stagger: thumb_stagger
+            spread: thumb_spread
+      rows:
+        thumb:
+          row_net: P0
+
+
+outlines:
+  keys_outline_right:
+    - what: rectangle
+      where: true
+      size: u
+  pcb_outline_right:
+    - what: hull
+      points:
+        - matrix_outer_middle
+        - matrix_outer_bottom
+        - thumbs_far_thumb
+        - matrix_inner_top
+        - matrix_index_top
+        - matrix_middle_top
+        - matrix_ring_top
+        - matrix_pinky_top
+        - matrix_inner_bottom
+        - matrix_inner_middle
+        - matrix_index_bottom
+        - matrix_middle_bottom
+        - matrix_ring_bottom
+        - matrix_pinky_bottom
+        - thumbs_near_thumb
+        - thumbs_home_thumb
+      concavity: 20
+      expand: 2
+    - what: rectangle
+      operation: add
+      size: [2.87u, 2.5u]
+      corner: 3
+      adjust:
+        shift: [164, -93]
+        rotate: -27
+    # - what: outline
+    #   name: keys_outline_right
+    #   operation: stack
+
+
+
+
+pcbs:
+  skey_right:
+    template: kicad8
+    outlines:
+      main:
+        outline: pcb_outline_right
+    footprints:
+      switches: 
+        # what: ceoloide/switch_mx
+        what: ceoloide/switch_gateron_ks27_ks33
+        where: true
+        params:
+          from: "{{col_net}}"
+          to: "{{colrow}}"
+          include_keycap: true
+          reversible: true
+          include_corner_marks: true
+          include_stem_outline: true
+      diodes:
+        where: true
+        what: diode
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [8, 3.5]
+          rotate: 90
+      mcu:
+        what: xiao
+        params:
+          reversable: true
+        adjust:
+          shift: [182, -88]
+          rotate: -27
+      trrs:
+        what: ceoloide/trrs_pj320a
+        where:
+          ref: thumbs_far_thumb
+          shift: [10, 20]
+          rotate: -90
+        params:
+          SL: GND
+          R1: P6
+          R2: P7
+          TP: VCC
+          reversible: true
+
+  
