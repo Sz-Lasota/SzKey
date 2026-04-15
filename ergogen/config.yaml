@@ -35,10 +35,10 @@ points:
         outer:
           rows:
             bottom:
-              col_net: P8
+              col_net: P1
               row_net: P0
             middle:
-              col_net: P9
+              col_net: P2
               row_net: P0
             top:
               skip: true
@@ -146,16 +146,13 @@ pcbs:
         outline: pcb_outline_right
     footprints:
       switches: 
-        # what: ceoloide/switch_mx
-        what: ceoloide/switch_gateron_ks27_ks33
+        what: ceoloide/switch_choc_v1_v2
         where: true
         params:
           from: "{{col_net}}"
           to: "{{colrow}}"
           include_keycap: true
           reversible: true
-          include_corner_marks: true
-          include_stem_outline: true
       diodes:
         where: true
         what: diode
@@ -163,8 +160,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [8, 3.5]
-          rotate: 90
+          shift: [0, -8]
       mcu:
         what: xiao
         params:
@@ -185,4 +181,4 @@ pcbs:
           TP: VCC
           reversible: true
 
-  
+ 
