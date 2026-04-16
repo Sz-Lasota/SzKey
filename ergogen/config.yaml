@@ -99,11 +99,11 @@ points:
 
 
 outlines:
-  keys_outline_right:
+  keys_outline:
     - what: rectangle
       where: true
       size: u
-  pcb_outline_right:
+  pcb_outline:
     - what: hull
       points:
         - matrix_outer_middle
@@ -139,11 +139,11 @@ outlines:
 
 
 pcbs:
-  skey_right:
+  skey: 
     template: kicad8
     outlines:
       main:
-        outline: pcb_outline_right
+        outline: pcb_outline
     footprints:
       switches: 
         what: ceoloide/switch_choc_v1_v2
@@ -168,6 +168,26 @@ pcbs:
         adjust:
           shift: [182, -88]
           rotate: -27
+      mounting_hole_mcu:
+        what: ceoloide/mounting_hole_npth
+        adjust:
+          shift: [165, -98]
+      mounting_hole_thumb:
+        what: ceoloide/mounting_hole_npth
+        adjust:
+          shift: [105, -95]
+      mounting_hole_pinky:
+        what: ceoloide/mounting_hole_npth
+        adjust:
+          shift: [73.5, -60]
+      mounting_hole_middle:
+        what: ceoloide/mounting_hole_npth
+        adjust:
+          shift: [97, -50]
+      mounting_hole_inner:
+        what: ceoloide/mounting_hole_npth
+        adjust:
+          shift: [165, -70]
       trrs:
         what: ceoloide/trrs_pj320a
         where:
