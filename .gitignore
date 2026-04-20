@@ -3,3 +3,10 @@ TOTEM/
 
 # Node
 node_modules
+
+# Gerbers
+*.zip
+
+# PCB
+fp-info-cache
+pcb/gerbers
