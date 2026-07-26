@@ -1,5 +1,6 @@
 # Refs
 TOTEM/
+*.FCBak
 
 # Node
 node_modules
