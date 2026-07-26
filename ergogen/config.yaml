@@ -148,11 +148,14 @@ pcbs:
       switches: 
         what: ceoloide/switch_choc_v1_v2
         where: true
+        adjust:
+          rotate: 180
         params:
           from: "{{col_net}}"
           to: "{{colrow}}"
           include_keycap: true
           reversible: true
+          choc_v2_support: false
       diodes:
         where: true
         what: diode
@@ -160,7 +163,7 @@ pcbs:
           from: "{{colrow}}"
           to: "{{row_net}}"
         adjust:
-          shift: [0, -8]
+          shift: [0, 8]
       mcu:
         what: xiao
         params:
@@ -188,6 +191,10 @@ pcbs:
         what: ceoloide/mounting_hole_npth
         adjust:
           shift: [165, -70]
+      mounting_hole_bottom_outer:
+        what: ceoloide/mounting_hole_npth
+        adjust:
+          shift: [58, -111]
       trrs:
         what: ceoloide/trrs_pj320a
         where:
@@ -202,3 +209,4 @@ pcbs:
           reversible: true
 
  
+
