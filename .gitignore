@@ -1,9 +1,9 @@
 # Refs
 TOTEM/
-*.FCBak
 
-# Node
-node_modules
+# Models
+*.FCBak
+*.step
 
 # Gerbers
 *.zip
